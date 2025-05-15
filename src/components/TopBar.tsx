@@ -2,7 +2,7 @@ import React from 'react'
 
 const TopBar = () => {
   return (
-    <div>
+    <div className="h-screen bg-blue-300">
       TopBar
     </div>
   )

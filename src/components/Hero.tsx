@@ -4,7 +4,7 @@ import React from "react";
 
 const Hero = () => {
   return (
-    <Box>
+    <Box sx={{width:"100%", height:"800px", backgroundColor:"green"}}>
        Hero
     </Box>
   );

@@ -1,7 +1,9 @@
 "use client";
 
-import React from "react";
-import { Box, Button, List, ListItem } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import { Box, Button, List, ListItem, Drawer, IconButton } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 import { Link as ScrollLink } from "react-scroll";
 import LaunchIcon from "@mui/icons-material/Launch";
 import Image from "next/image";
@@ -9,14 +11,34 @@ import Link from "next/link";
 import "./style.css";
 
 const links = [
-  { name: "home", path: "home" },
-  { name: "about", path: "about" },
-  { name: "services", path: "services" },
-  { name: "projects", path: "projects" },
-  { name: "contact", path: "contact" },
+  { name: "Home", path: "home" },
+  { name: "About", path: "about" },
+  { name: "Services", path: "services" },
+  { name: "Projects", path: "projects" },
+  { name: "Contact", path: "contact" },
 ];
 
 const Header = () => {
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      links.forEach((link) => {
+        const section = document.getElementById(link.path);
+        if (section) {
+          const rect = section.getBoundingClientRect();
+          if (rect.top <= 100 && rect.bottom >= 100) {
+            setActiveSection(link.path);
+          }
+        }
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <Box
       component="nav"
@@ -26,63 +48,127 @@ const Header = () => {
         zIndex: 1000,
         backgroundColor: "#333",
         py: 2,
-        boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
         px: { xs: 2, md: 6 },
-        flexWrap: "wrap",
+        boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
       }}
     >
-      <Box>
-        <Link href="">
-          <Image src="/assets/logo.svg" alt="logo" width={230} height={48} />
-        </Link>
-      </Box>
-      {/* Nav Links */}
-      <List
+      {/* Top Bar */}
+      <Box
         sx={{
           display: "flex",
-          gap: 4,
-          justifyContent: "center",
-          m: 0,
-          p: 0,
-          flexWrap: "wrap",
+          justifyContent: "space-between",
+          alignItems: "center",
         }}
       >
-        {links.map((link, index) => (
-          <ListItem key={index} sx={{ width: "auto", p: 0 }}>
+        {/* Logo */}
+        <Link href="/">
+          <Image src="/assets/logo.svg" alt="logo" width={180} height={40} />
+        </Link>
+
+        {/* Desktop Nav */}
+        <Box
+          sx={{
+            display: { xs: "none", md: "flex" },
+            alignItems: "center",
+            gap: 4,
+          }}
+        >
+          {links.map((link, index) => (
             <ScrollLink
+              key={index}
               to={link.path}
               smooth={true}
               duration={500}
               offset={-70}
               spy={true}
-              activeClass="active"
-              className="nav-link"
+              className={`nav-link ${
+                activeSection === link.path ? "active" : ""
+              }`}
             >
-              {link.name} /
+              {link.name}
             </ScrollLink>
-          </ListItem>
-        ))}
-      </List>
+          ))}
+        </Box>
 
-      {/* CTA Button */}
-      <Button
-        variant="contained"
-        sx={{
-          mt: { xs: 2, md: 0 },
-          backgroundColor: "#fff",
-          color: "#000",
-          fontWeight: 600,
-          "&:hover": {
-            backgroundColor: "#e0ae1d",
-          },
+        {/* Desktop Button */}
+        <Button
+          variant="contained"
+          sx={{
+            display: { xs: "none", md: "flex" },
+            backgroundColor: "#fff",
+            color: "#000",
+            fontWeight: 600,
+            "&:hover": {
+              backgroundColor: "#e0ae1d",
+            },
+          }}
+          endIcon={<LaunchIcon />}
+        >
+          Get a Quote
+        </Button>
+
+        {/* Mobile Menu Icon */}
+        <IconButton
+          sx={{ display: { xs: "flex", md: "none" }, color: "#fff" }}
+          onClick={() => setDrawerOpen(true)}
+        >
+          <MenuIcon />
+        </IconButton>
+      </Box>
+
+      {/* Mobile Drawer */}
+      <Drawer
+        anchor="right"
+        open={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+        PaperProps={{
+          sx: { width: 250, backgroundColor: "#222", color: "#fff" },
         }}
-        endIcon={<LaunchIcon />}
       >
-        Get a Quote
-      </Button>
+        <Box sx={{ display: "flex", justifyContent: "flex-end", p: 2 }}>
+          <IconButton
+            onClick={() => setDrawerOpen(false)}
+            sx={{ color: "#fff" }}
+          >
+            <CloseIcon />
+          </IconButton>
+        </Box>
+        <List>
+          {links.map((link, index) => (
+            <ListItem key={index} sx={{ justifyContent: "center" }}>
+              <ScrollLink
+                to={link.path}
+                smooth={true}
+                duration={500}
+                offset={-70}
+                spy={true}
+                className={`nav-link ${
+                  activeSection === link.path ? "active" : ""
+                }`}
+                onClick={() => setTimeout(() => setDrawerOpen(false), 500)}
+              >
+                {link.name}
+              </ScrollLink>
+            </ListItem>
+          ))}
+          <ListItem sx={{ justifyContent: "center", mt: 2 }}>
+            <Button
+              variant="contained"
+              sx={{
+                backgroundColor: "#fff",
+                color: "#000",
+                fontWeight: 600,
+                "&:hover": {
+                  backgroundColor: "#e0ae1d",
+                },
+              }}
+              endIcon={<LaunchIcon />}
+            >
+              Get a Quote
+            </Button>
+          </ListItem>
+        </List>
+      </Drawer>
     </Box>
   );
 };

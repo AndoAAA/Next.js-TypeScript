@@ -32,7 +32,7 @@ const TopBar = () => {
         </Box>
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
           <EmailIcon sx={{ color: "black" }} />
-          <Typography sx={{ color: "black" }}>hak@constrcut.com</Typography>
+          <Typography sx={{ color: "black" }}>urban@construct.com</Typography>
         </Box>
       </Box>
 

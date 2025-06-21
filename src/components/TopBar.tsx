@@ -7,7 +7,6 @@ import Socials from "./Socials";
 const TopBar = () => {
   return (
     <Box
-      id="home"
       sx={{
         backgroundColor: "#ffc221",
         display: "flex",

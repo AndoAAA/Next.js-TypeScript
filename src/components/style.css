@@ -21,3 +21,41 @@
   font-weight: bold;
   color: #ffc221;
 }
+
+
+.tabsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.tabTrigger {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #fff;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  color: #000;
+}
+
+.tabTrigger:hover {
+  background-color: #e3f2fd;
+  box-shadow: 0 4px 10px rgba(244, 167, 23, 0.2);
+}
+
+.tabTriggerActive {
+  background-color: #ffc221;
+  color: #fff;
+  border: 2px solid #ffc221;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(210, 142, 25, 0.4);
+}
+

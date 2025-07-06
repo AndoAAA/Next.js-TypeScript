@@ -27,7 +27,7 @@ const socials = [
 
 const Socials = () => {
   return (
-    <Box sx={{ display: "flex", gap: 2 }} >
+    <Box sx={{ display: "flex", gap: 2 }}>
       {socials.map((item, index) => (
         <Link
           href={item.path}

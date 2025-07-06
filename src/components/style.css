@@ -22,7 +22,6 @@
   color: #ffc221;
 }
 
-
 .tabsList {
   display: flex;
   flex-wrap: wrap;
@@ -58,4 +57,3 @@
   font-weight: 700;
   box-shadow: 0 4px 12px rgba(210, 142, 25, 0.4);
 }
-

@@ -44,7 +44,31 @@ const Work = () => {
       }}
     >
       <Box maxWidth="1200px" mx="auto" textAlign="center" mb={6} px={2}>
-        <Typography variant="h3" fontWeight={700} mb={2}>
+        <Typography
+          variant="h3"
+          fontWeight={700}
+          mb={2}
+          sx={{
+            color: "#e0ae1d",
+            letterSpacing: "3px",
+            fontWeight: 700,
+            textTransform: "uppercase",
+            mb: 3,
+            fontSize: { xs: "1.25rem", md: "1.75rem" },
+            textAlign: "center",
+            display: "inline-block",
+            position: "relative",
+            "&::before, &::after": {
+              content: '"•"',
+              color: "#e0ae1d",
+              mx: 1.5,
+              fontWeight: 900,
+              fontSize: { xs: "2.5rem", md: "3.5rem" },
+              position: "relative",
+              top: "5px",
+            },
+          }}
+        >
           Our Work
         </Typography>
         <Typography variant="h5" color="text.secondary" mb={1}>

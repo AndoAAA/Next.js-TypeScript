@@ -43,9 +43,24 @@ const About = () => {
           variant={isMobile ? "h4" : "h3"}
           component="h2"
           sx={{
-            fontWeight: 700,
-            mb: 2,
             color: "#e0ae1d",
+            letterSpacing: "3px",
+            fontWeight: 700,
+            textTransform: "uppercase",
+            mb: 3,
+            fontSize: { xs: "1.25rem", md: "1.75rem" },
+            textAlign: "center",
+            display: "inline-block",
+            position: "relative",
+            "&::before, &::after": {
+              content: '"•"',
+              color: "#e0ae1d",
+              mx: 1.5,
+              fontWeight: 900,
+              fontSize: { xs: "2.5rem", md: "3.5rem" },
+              position: "relative",
+              top: "5px",
+            },
           }}
         >
           About Us

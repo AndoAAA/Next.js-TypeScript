@@ -9,6 +9,7 @@ const Contact = () => {
   return (
     <Box
       id="contact"
+      component="section"
       sx={{
         py: { xs: 8, md: 12 },
         px: 2,
@@ -20,15 +21,12 @@ const Contact = () => {
         zIndex: 1,
       }}
     >
-      {/* Optional dark overlay */}
+      {/* Overlay */}
       <Box
         sx={{
           position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          backgroundColor: "rgba(0,0,0,0.5)",
+          inset: 0,
+          backgroundColor: "rgba(0, 0, 0, 0.55)",
           zIndex: 1,
         }}
       />
@@ -44,7 +42,7 @@ const Contact = () => {
         position="relative"
         zIndex={2}
       >
-        {/* Left - Text */}
+        {/* Text Column */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -55,9 +53,9 @@ const Contact = () => {
           <Box
             sx={{
               backgroundColor: "rgba(255, 255, 255, 0.95)",
-              p: 4,
-              borderRadius: "16px",
-              boxShadow: "0 12px 32px rgba(0,0,0,0.25)",
+              p: { xs: 3, md: 4 },
+              borderRadius: 3,
+              boxShadow: "0 12px 32px rgba(0,0,0,0.2)",
             }}
           >
             <Typography
@@ -78,8 +76,10 @@ const Contact = () => {
             <Typography
               variant="body1"
               color="text.secondary"
-              maxWidth="500px"
-              lineHeight={1.7}
+              sx={{
+                maxWidth: 500,
+                lineHeight: 1.7,
+              }}
             >
               Ready to bring your project to life? Share your ideas with us, and
               we’ll get back to you within 24 hours with expert advice and a
@@ -88,7 +88,7 @@ const Contact = () => {
           </Box>
         </motion.div>
 
-        {/* Right - Form */}
+        {/* Form Column */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -99,9 +99,9 @@ const Contact = () => {
           <Box
             sx={{
               backgroundColor: "rgba(255, 255, 255, 0.95)",
-              p: 4,
-              borderRadius: "16px",
-              boxShadow: "0 12px 32px rgba(0,0,0,0.25)",
+              p: { xs: 3, md: 4 },
+              borderRadius: 3,
+              boxShadow: "0 12px 32px rgba(0,0,0,0.2)",
             }}
           >
             <Form />

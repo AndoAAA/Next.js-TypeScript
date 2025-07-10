@@ -60,39 +60,39 @@ const Faq = () => {
   return (
     <Box
       id="faq"
+      component="section"
       sx={{
         py: 10,
         px: 2,
         backgroundColor: "#f5f7fa",
       }}
     >
+      {/* Title Section */}
       <Box maxWidth="900px" mx="auto" textAlign="center" mb={6}>
         <Typography
           variant="h6"
           sx={{
             color: "#e0ae1d",
-            letterSpacing: "3px",
-            fontWeight: 700,
+            letterSpacing: 2,
+            fontWeight: 600,
             textTransform: "uppercase",
-            mb: 3,
-            fontSize: { xs: "1.25rem", md: "1.75rem" },
-            textAlign: "center",
-            display: "inline-block",
-            position: "relative",
+            mb: 1,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
             "&::before, &::after": {
               content: '"•"',
-              color: "#e0ae1d",
               mx: 1.5,
-              fontWeight: 900,
-              fontSize: { xs: "2.5rem", md: "3.5rem" },
-              position: "relative",
-              top: "5px",
+              fontSize: "1.5rem",
+              fontWeight: "bold",
+              color: "#e0ae1d",
             },
           }}
         >
           FAQ
         </Typography>
-        <Typography variant="h3" fontWeight={700} mb={2}>
+
+        <Typography variant="h4" fontWeight={700} mb={2}>
           Got Questions? We've Got You Covered
         </Typography>
         <Typography
@@ -106,6 +106,7 @@ const Faq = () => {
         </Typography>
       </Box>
 
+      {/* FAQ List */}
       <Box maxWidth="900px" mx="auto">
         {faqItemsData.map((item, i) => (
           <motion.div
@@ -117,20 +118,31 @@ const Faq = () => {
             viewport={{ once: true }}
           >
             <Accordion
+              disableGutters
               sx={{
                 backgroundColor: "#fff",
                 boxShadow: "0 4px 16px rgba(0,0,0,0.05)",
                 borderRadius: 2,
                 mb: 2,
+                "&:before": {
+                  display: "none", // removes default divider line
+                },
               }}
             >
               <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                sx={{ fontWeight: 600 }}
+                expandIcon={<ExpandMoreIcon sx={{ color: "#e0ae1d" }} />}
+                sx={{
+                  fontWeight: 600,
+                  "& .MuiAccordionSummary-content": {
+                    color: "#222",
+                  },
+                }}
               >
                 {item.title}
               </AccordionSummary>
-              <AccordionDetails sx={{ color: "text.secondary" }}>
+              <AccordionDetails
+                sx={{ color: "text.secondary", fontSize: "1rem" }}
+              >
                 {item.description}
               </AccordionDetails>
             </Accordion>

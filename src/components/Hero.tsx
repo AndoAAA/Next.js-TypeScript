@@ -1,3 +1,5 @@
+"use client";
+
 import { Box, Typography, Button } from "@mui/material";
 import LaunchIcon from "@mui/icons-material/Launch";
 import Image from "next/image";
@@ -23,12 +25,14 @@ const Hero = () => {
       {/* Background Image */}
       <Image
         src="/assets/img/hero/bg.jpg"
-        alt="Hero background"
+        alt="Hero background construction"
         fill
+        quality={100}
+        priority
         style={{ objectFit: "cover", zIndex: -2 }}
       />
 
-      {/* Dark overlay */}
+      {/* Overlay Gradient */}
       <Box
         sx={{
           position: "absolute",
@@ -36,28 +40,44 @@ const Hero = () => {
           left: 0,
           width: "100%",
           height: "100%",
-          backgroundColor: "rgba(0, 0, 0, 0.5)",
+          background:
+            "linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.8))",
           zIndex: -1,
         }}
       />
 
-      {/* Overlay Content */}
-      <Box sx={{ maxWidth: "900px" }}>
+      {/* Content */}
+      <Box sx={{ maxWidth: "900px", px: 2 }}>
+        <Typography
+          variant="h6"
+          sx={{
+            color: "#e0ae1d",
+            letterSpacing: 1.5,
+            textTransform: "uppercase",
+            fontWeight: 600,
+            mb: 1,
+            fontSize: { xs: "0.9rem", md: "1rem" },
+          }}
+        >
+          • Welcome to UrbanBuild •
+        </Typography>
+
         <Typography
           variant="h2"
           sx={{
             fontWeight: "bold",
             fontSize: {
-              xs: "2rem",
-              sm: "2.5rem",
+              xs: "2.2rem",
+              sm: "2.8rem",
               md: "3.5rem",
               lg: "4rem",
             },
-            mb: 2,
+            mb: 3,
+            lineHeight: 1.2,
           }}
         >
-          <span style={{ color: "#e0ae1d" }}>Building</span> robust lasting
-          solutions
+          <span style={{ color: "#e0ae1d" }}>Building</span> Robust, Lasting
+          Solutions
         </Typography>
 
         <Typography
@@ -69,21 +89,27 @@ const Hero = () => {
             },
             mb: 4,
             color: "#f0f0f0",
+            maxWidth: "700px",
+            mx: "auto",
           }}
         >
           From concept to completion, we ensure every detail is optimized for
-          strength and endurance, creating solutions that inspire confidence and
-          stand firm for years.
+          strength and endurance—creating spaces that inspire confidence and
+          stand the test of time.
         </Typography>
 
         <Button
           variant="contained"
           size="large"
           sx={{
-            backgroundColor: "#e0ae1d",
+            backgroundColor: "#ffc221",
             color: "#000",
+            fontWeight: 600,
+            borderRadius: "8px",
+            px: 4,
+            py: 1.5,
             "&:hover": {
-              backgroundColor: "#c8961a",
+              backgroundColor: "#e0ae1d",
             },
           }}
           endIcon={<LaunchIcon />}

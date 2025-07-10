@@ -25,58 +25,45 @@ const About = () => {
         py: { xs: 8, md: 12 },
         px: { xs: 3, md: 10 },
         display: "flex",
-        flexDirection: isMobile ? "column" : "row",
+        flexDirection: { xs: "column", md: "row" },
         alignItems: "center",
         justifyContent: "center",
-        textAlign: isMobile ? "center" : "left",
         gap: 6,
       }}
     >
-      {/* Տեքստային հատված */}
-      <Box
-        sx={{
-          maxWidth: 700,
-          flex: 1,
-        }}
-      >
+      {/* Text Section */}
+      <Box sx={{ maxWidth: 700, flex: 1 }}>
         <Typography
-          variant={isMobile ? "h4" : "h3"}
-          component="h2"
+          variant="h6"
           sx={{
             color: "#e0ae1d",
-            letterSpacing: "3px",
-            fontWeight: 700,
+            fontWeight: 600,
             textTransform: "uppercase",
-            mb: 3,
-            fontSize: { xs: "1.25rem", md: "1.75rem" },
-            textAlign: "center",
-            display: "inline-block",
-            position: "relative",
+            letterSpacing: 2,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: isMobile ? "center" : "flex-start",
+            mb: 2,
             "&::before, &::after": {
               content: '"•"',
-              color: "#e0ae1d",
               mx: 1.5,
-              fontWeight: 900,
-              fontSize: { xs: "2.5rem", md: "3.5rem" },
-              position: "relative",
-              top: "5px",
+              fontSize: "2rem",
+              fontWeight: "bold",
+              color: "#e0ae1d",
             },
           }}
         >
           About Us
         </Typography>
 
-        <Typography
-          variant={isMobile ? "h6" : "h4"}
-          sx={{ fontWeight: 600, mb: 3 }}
-        >
+        <Typography variant="h4" fontWeight={700} mb={2}>
           Focused on Excellence In Every Project
         </Typography>
 
         <Typography
           variant="body1"
           sx={{
-            fontSize: isMobile ? "1rem" : "1.1rem",
+            fontSize: "1.1rem",
             lineHeight: 1.8,
             mb: 4,
             color: "#555",
@@ -91,7 +78,7 @@ const About = () => {
           src="/assets/img/about/signature.svg"
           width={154}
           height={38}
-          alt="signature"
+          alt="Company CEO signature"
           style={{ marginBottom: 8 }}
         />
 
@@ -122,13 +109,13 @@ const About = () => {
         </Button>
       </Box>
 
-      {/* Նկար */}
+      {/* Image Section */}
       <Box
         sx={{
           maxWidth: 400,
           width: "100%",
           flex: 1,
-          mt: isMobile ? 6 : 0,
+          mt: { xs: 6, md: 0 },
           display: "flex",
           justifyContent: "center",
         }}
@@ -137,7 +124,7 @@ const About = () => {
           src="/assets/img/about/img.jpg"
           width={400}
           height={300}
-          alt="team photo"
+          alt="Our construction team in action"
           style={{
             width: "100%",
             height: "auto",

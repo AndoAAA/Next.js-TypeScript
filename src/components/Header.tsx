@@ -1,14 +1,22 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Box, Button, List, ListItem, Drawer, IconButton } from "@mui/material";
+import {
+  Box,
+  Button,
+  List,
+  ListItem,
+  Drawer,
+  IconButton,
+  useScrollTrigger,
+} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import { Link as ScrollLink } from "react-scroll";
 import LaunchIcon from "@mui/icons-material/Launch";
 import Image from "next/image";
 import Link from "next/link";
-import "./style.css";
+import "./style.css"; // assumes .nav-link and .active classes are styled here
 
 const links = [
   { name: "Home", path: "home" },
@@ -22,6 +30,9 @@ const Header = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
 
+  // Sticky shadow effect
+  const trigger = useScrollTrigger({ threshold: 10 });
+
   useEffect(() => {
     const handleScroll = () => {
       links.forEach((link) => {
@@ -34,7 +45,6 @@ const Header = () => {
         }
       });
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -45,14 +55,14 @@ const Header = () => {
       sx={{
         position: "sticky",
         top: 0,
-        zIndex: 1000,
+        zIndex: 1100,
         backgroundColor: "#333",
         py: 2,
         px: { xs: 2, md: 6 },
-        boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
+        boxShadow: trigger ? "0 2px 10px rgba(0,0,0,0.25)" : "none",
+        transition: "box-shadow 0.3s ease",
       }}
     >
-      {/* Top Bar */}
       <Box
         sx={{
           display: "flex",
@@ -62,7 +72,13 @@ const Header = () => {
       >
         {/* Logo */}
         <Link href="/">
-          <Image src="/assets/logo.svg" alt="logo" width={180} height={40} />
+          <Image
+            src="/assets/logo.svg"
+            alt="UrbanBuild logo"
+            width={180}
+            height={40}
+            priority
+          />
         </Link>
 
         {/* Desktop Nav */}
@@ -90,14 +106,15 @@ const Header = () => {
           ))}
         </Box>
 
-        {/* Desktop Button */}
+        {/* Desktop CTA Button */}
         <Button
           variant="contained"
           sx={{
             display: { xs: "none", md: "flex" },
-            backgroundColor: "#fff",
+            backgroundColor: "#ffc221",
             color: "#000",
             fontWeight: 600,
+            px: 3,
             "&:hover": {
               backgroundColor: "#e0ae1d",
             },
@@ -107,10 +124,11 @@ const Header = () => {
           Get a Quote
         </Button>
 
-        {/* Mobile Menu Icon */}
+        {/* Mobile Menu Button */}
         <IconButton
           sx={{ display: { xs: "flex", md: "none" }, color: "#fff" }}
           onClick={() => setDrawerOpen(true)}
+          aria-label="Open menu"
         >
           <MenuIcon />
         </IconButton>
@@ -122,13 +140,18 @@ const Header = () => {
         open={drawerOpen}
         onClose={() => setDrawerOpen(false)}
         PaperProps={{
-          sx: { width: 250, backgroundColor: "#222", color: "#fff" },
+          sx: {
+            width: 280,
+            backgroundColor: "#222",
+            color: "#fff",
+          },
         }}
       >
         <Box sx={{ display: "flex", justifyContent: "flex-end", p: 2 }}>
           <IconButton
             onClick={() => setDrawerOpen(false)}
             sx={{ color: "#fff" }}
+            aria-label="Close menu"
           >
             <CloseIcon />
           </IconButton>
@@ -145,7 +168,7 @@ const Header = () => {
                 className={`nav-link ${
                   activeSection === link.path ? "active" : ""
                 }`}
-                onClick={() => setTimeout(() => setDrawerOpen(false), 500)}
+                onClick={() => setTimeout(() => setDrawerOpen(false), 300)}
               >
                 {link.name}
               </ScrollLink>
@@ -154,8 +177,9 @@ const Header = () => {
           <ListItem sx={{ justifyContent: "center", mt: 2 }}>
             <Button
               variant="contained"
+              fullWidth
               sx={{
-                backgroundColor: "#fff",
+                backgroundColor: "#ffc221",
                 color: "#000",
                 fontWeight: 600,
                 "&:hover": {

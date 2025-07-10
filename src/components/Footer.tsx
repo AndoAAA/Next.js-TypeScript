@@ -29,17 +29,19 @@ const Footer = () => {
         flexDirection={{ xs: "column", md: "row" }}
         justifyContent="space-between"
         gap={6}
+        flexWrap="wrap"
       >
         {/* Logo & description */}
-        <Box flex={1}>
-          <Link href="/">
-            <Image
-              src="/assets/logo.png"
-              width={200}
-              height={40}
-              alt="logo"
-              style={{ marginBottom: 16 }}
-            />
+        <Box flex={1} minWidth="250px">
+          <Link href="/" passHref>
+            <Box sx={{ display: "inline-block", mb: 2 }}>
+              <Image
+                src="/assets/logo.png"
+                width={200}
+                height={40}
+                alt="UrbanBuild Logo"
+              />
+            </Box>
           </Link>
           <Typography variant="body2" color="grey.400" lineHeight={1.7}>
             We turn your vision into reality through expert craftsmanship,
@@ -49,28 +51,28 @@ const Footer = () => {
         </Box>
 
         {/* Contact info */}
-        <Box flex={1}>
+        <Box flex={1} minWidth="250px">
           <Typography variant="h6" fontWeight={600} mb={2}>
             📍 Contact
           </Typography>
-          <Box display="flex" flexDirection="column" gap={1}>
+          <Box display="flex" flexDirection="column" gap={1.2}>
             <Box display="flex" alignItems="center" gap={1}>
               <RiMapPin2Fill color="#ffc221" />
-              <Typography>1250 Brickstone Ave, US</Typography>
+              <Typography variant="body2">1250 Brickstone Ave, US</Typography>
             </Box>
             <Box display="flex" alignItems="center" gap={1}>
               <RiPhoneFill color="#ffc221" />
-              <Typography>+123-456-78-90</Typography>
+              <Typography variant="body2">+123-456-78-90</Typography>
             </Box>
             <Box display="flex" alignItems="center" gap={1}>
               <RiMailFill color="#ffc221" />
-              <Typography>email@urbanbuild.com</Typography>
+              <Typography variant="body2">email@urbanbuild.com</Typography>
             </Box>
           </Box>
         </Box>
 
         {/* Newsletter */}
-        <Box flex={1}>
+        <Box flex={1} minWidth="250px">
           <Typography variant="h6" fontWeight={600} mb={2}>
             📨 Newsletter
           </Typography>
@@ -83,6 +85,7 @@ const Footer = () => {
               placeholder="Your Email"
               variant="filled"
               size="small"
+              aria-label="Email for newsletter"
               sx={{
                 backgroundColor: "#fff",
                 borderRadius: "4px",
@@ -92,6 +95,7 @@ const Footer = () => {
             />
             <Button
               variant="contained"
+              aria-label="Subscribe"
               sx={{
                 backgroundColor: "#ffc221",
                 color: "#000",
@@ -106,8 +110,14 @@ const Footer = () => {
         </Box>
       </Box>
 
-      {/* Bottom copyright */}
-      <Box textAlign="center" mt={6} fontSize={14} color="grey.500">
+      {/* Footer bottom line */}
+      <Box
+        textAlign="center"
+        mt={6}
+        fontSize={14}
+        color="grey.500"
+        sx={{ opacity: 0.8 }}
+      >
         © {new Date().getFullYear()} UrbanBuild. All rights reserved.
       </Box>
     </Box>

@@ -3,9 +3,10 @@
 import { Box, IconButton, useTheme, useMediaQuery } from "@mui/material";
 import React, { useRef, useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import "swiper/css/pagination";
 import Image from "next/image";
 import Typography from "@mui/material/Typography";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
@@ -29,13 +30,11 @@ const Slider = () => {
       swiperInstance.navigation.init();
       swiperInstance.navigation.update();
 
-      // Event listeners to track position
       swiperInstance.on("slideChange", () => {
         setIsBeginning(swiperInstance.isBeginning);
         setIsEnd(swiperInstance.isEnd);
       });
 
-      // Initialize states
       setIsBeginning(swiperInstance.isBeginning);
       setIsEnd(swiperInstance.isEnd);
     }
@@ -43,16 +42,31 @@ const Slider = () => {
 
   return (
     <Box
-      sx={{ width: "100%", maxWidth: 630, mx: "auto", position: "relative" }}
+      sx={{
+        width: "100%",
+        maxWidth: 630,
+        mx: "auto",
+        position: "relative",
+        "& .swiper-pagination-bullet": {
+          backgroundColor: "#ccc",
+          opacity: 1,
+        },
+        "& .swiper-pagination-bullet-active": {
+          backgroundColor: "#ffc221",
+        },
+      }}
     >
       <Swiper
         onSwiper={setSwiperInstance}
-        modules={[Navigation]}
+        modules={[Navigation, Pagination]}
         spaceBetween={20}
         slidesPerView={1}
         navigation={{
           prevEl: prevRef.current,
           nextEl: nextRef.current,
+        }}
+        pagination={{
+          clickable: true,
         }}
         style={{ width: "100%", height: 300 }}
       >

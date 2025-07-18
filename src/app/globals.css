@@ -7,6 +7,6 @@
     }
 
     body{
-        
+        @apply font-poppins bg-body text-black tracking-[0.5px];
     }
 }

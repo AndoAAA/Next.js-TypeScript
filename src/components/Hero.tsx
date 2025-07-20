@@ -55,7 +55,11 @@ const Hero = () => {
               viewport={{ once: false, amount: 0.4 }}
               className="mb-10"
             >
-              <Button className="bg-green-950 cursor-pointer" variant="destructive" size="lg">
+              <Button
+                className="bg-teal-700  hover:bg-teal-500 cursor-pointer"
+                variant="destructive"
+                size="lg"
+              >
                 Let’s eat
               </Button>
             </motion.div>

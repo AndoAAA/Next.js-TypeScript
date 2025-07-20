@@ -6,13 +6,15 @@ import { fadeIn } from "../../variants";
 import { Button } from "@/components/ui/button";
 import Hero from "@/components/Hero";
 import Header from "@/components/Header";
+import Menu from "@/components/Menu";
 
 export default function Home() {
   return (
     <>
       <main className="w-full max-w-[1440px] bg-white mx-auto overflow-hidden ">
-        <Header/>
+        <Header />
         <Hero />
+        <Menu />
       </main>
     </>
   );

@@ -1,7 +1,11 @@
-import React from "react";
+import React from 'react'
 
 const StyleGuide = () => {
-  return <div>Hello</div>;
-};
+  return (
+    <>
+      <h1 className='text-yellow-600'>Heading 1</h1>
+    </>
+  )
+}
 
-export default StyleGuide;
+export default StyleGuide

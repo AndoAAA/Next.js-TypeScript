@@ -21,9 +21,10 @@ import { cn } from "@/lib/utils";
 
 const ReservationForm = () => {
   const [date, setDate] = useState<Date | undefined>();
+  const [isDateOpen, setIsDateOpen] = useState(false);
 
   return (
-    <form className="max-w-3xl mx-auto p-6  rounded-2xl text-white space-y-8">
+    <form className="max-w-3xl mx-auto p-6 rounded-2xl text-white space-y-8">
       <h2 className="text-3xl font-semibold text-center">Book a Table</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -40,7 +41,7 @@ const ReservationForm = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <Label>Date</Label>
-          <Popover>
+          <Popover open={isDateOpen} onOpenChange={setIsDateOpen}>
             <PopoverTrigger asChild>
               <Button
                 variant="outline"
@@ -52,11 +53,17 @@ const ReservationForm = () => {
                 {date ? format(date, "PPP") : <span>Pick a date</span>}
               </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-auto p-0" align="start">
+            <PopoverContent
+              className="w-auto p-0 bg-white text-black"
+              align="start"
+            >
               <Calendar
                 mode="single"
                 selected={date}
-                onSelect={setDate}
+                onSelect={(selectedDate) => {
+                  setDate(selectedDate);
+                  setIsDateOpen(false); // Auto-close on select
+                }}
                 initialFocus
               />
             </PopoverContent>
@@ -69,7 +76,7 @@ const ReservationForm = () => {
             <SelectTrigger className="mt-1 w-full bg-white text-black hover:bg-gray-100">
               <SelectValue placeholder="How many people?" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="bg-white text-black">
               <SelectGroup>
                 <SelectLabel>People</SelectLabel>
                 {[1, 2, 3, 4, 5, 6].map((num) => (

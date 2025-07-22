@@ -49,7 +49,7 @@ const Header: React.FC = () => {
           {/* BTN */}
           <ScrollLink to="reservation" smooth={true}>
             <Button
-              className="bg-orange-400 cursor-pointer"
+              className="bg-orange-400 cursor-pointer uppercase"
               variant="destructive"
               size="sm"
             >

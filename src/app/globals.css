@@ -1,7 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-
-.active{
- @apply text-orange-300;
+.active {
+  @apply text-orange-300;
 }

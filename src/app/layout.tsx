@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Lora, Poppins } from "next/font/google";
 import "./globals.css";
+import Header from "../components/Header";
 
 const lora = Lora({
   variable: "--font-lora",
@@ -29,7 +30,10 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
-      <body className={`${lora.variable} ${poppins.variable}`}>{children}</body>
+      <body className={`${lora.variable} ${poppins.variable}`}>
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }

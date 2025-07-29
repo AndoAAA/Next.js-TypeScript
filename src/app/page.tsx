@@ -1,13 +1,23 @@
-import Image from "next/image";
+"use client";
+
+import Hero from "@/components/Hero";
+import Menu from "@/components/Menu";
+import Reservation from "@/components/Reservation";
+import About from "@/components/About";
+import Map from "@/components/Map";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
     <>
-      <div className="min-h-screen bg-blue-100 flex items-center justify-center">
-        <h1 className="text-4xl font-bold text-blue-900">
-          Բարև Tailwind + Next.js
-        </h1>
-      </div>
+      <main className="w-full max-w-[1440px] bg-white mx-auto overflow-hidden ">
+        <Hero />
+        <Menu />
+        <Reservation />
+        <About />
+        <Map />
+        <Footer />
+      </main>
     </>
   );
 }

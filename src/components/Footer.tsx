@@ -59,17 +59,17 @@ const Footer = () => {
               </h4>
               <ul className="flex flex-col gap-y-4 text-sm sm:text-base">
                 <li>
-                  <Link href="/about" className="hover:text-orange-300">
+                  <Link href="/" className="hover:text-orange-300">
                     About Us
                   </Link>
                 </li>
                 <li>
-                  <Link href="/services" className="hover:text-orange-300">
+                  <Link href="/" className="hover:text-orange-300">
                     Services
                   </Link>
                 </li>
                 <li>
-                  <Link href="/contact" className="hover:text-orange-300">
+                  <Link href="/" className="hover:text-orange-300">
                     Contact
                   </Link>
                 </li>

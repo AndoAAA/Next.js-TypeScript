@@ -19,19 +19,19 @@ const markers: {
     position: [34.052235, -118.243683],
     title: "Location 1",
     sutitle: "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
-    image: "/map/1.png",
+    image: "/assets/map/1.png",
   },
   {
     position: [32.9748, -118.3356],
     title: "Location 2",
     sutitle: "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
-    image: "/map/2.png",
+    image: "/assets/map/2.png",
   },
   {
     position: [34.0211, -118.3965],
     title: "Location 3",
     sutitle: "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
-    image: "/map/3.png",
+    image: "/assets/map/3.png",
   },
 ];
 

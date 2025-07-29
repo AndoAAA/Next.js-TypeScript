@@ -1,9 +1,5 @@
 "use client";
 
-import Image from "next/image";
-import { motion } from "framer-motion";
-import { fadeIn } from "../../variants";
-import { Button } from "@/components/ui/button";
 import Hero from "@/components/Hero";
 import Header from "@/components/Header";
 import Menu from "@/components/Menu";

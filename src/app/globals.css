@@ -1,3 +1,10 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply px-2 md:px-3 lg:px-20 xl:px-40 bg-slate-50;
+}

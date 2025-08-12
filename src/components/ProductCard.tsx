@@ -6,9 +6,19 @@ interface ProductCardProps {
   image: string;
   text: string;
   price: string;
+  id?: number;
+  category?: string;
+  inStock?: boolean;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ image, text, price }) => {
+const ProductCard: React.FC<ProductCardProps> = ({
+  image,
+  text,
+  price,
+  id,
+  category,
+  inStock,
+}) => {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-visible flex flex-col h-[280px] ">
       <div className="relative w-full h-[200px]">

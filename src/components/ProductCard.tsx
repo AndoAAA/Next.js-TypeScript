@@ -8,7 +8,7 @@ import { FaCheck, FaHeart, FaShoppingCart } from "react-icons/fa";
 import toast from "react-hot-toast";
 
 interface ProductCardProps {
-  id: string; // CartItem-ում string է
+  id: number;
   image: string;
   text: string;
   price: number;
@@ -32,16 +32,16 @@ const ProductCard: React.FC<ProductCardProps> = ({
       toast.success("Removed from cart", {
         duration: 3000,
         position: "bottom-center",
-        icon : <FaCheck className="text-white"/>,
-        style:{
+        icon: <FaCheck className="text-white" />,
+        style: {
           background: "#ef4444",
           color: "#ffffff",
-          fontSize:"16px",
+          fontSize: "16px",
           fontWeight: 600,
           padding: "12px 20px",
           borderRadius: "6px",
-          transition: "opacity .3s ease"
-        }
+          transition: "opacity .3s ease",
+        },
       });
     } else {
       dispatch(
@@ -51,23 +51,22 @@ const ProductCard: React.FC<ProductCardProps> = ({
           price,
           image,
           quantity: 1,
-        }),
-        
-        toast.success("Successfully Added To Cart", {
+        })
+      );
+      toast.success("Successfully Added To Cart", {
         duration: 3000,
         position: "bottom-center",
-        icon : <FaCheck className="text-white"/>,
-        style:{
+        icon: <FaCheck className="text-white" />,
+        style: {
           background: "#22c55e",
           color: "#ffffff",
-          fontSize:"16px",
+          fontSize: "16px",
           fontWeight: 600,
           padding: "12px 20px",
           borderRadius: "6px",
-          transition: "opacity .3s ease"
-        }
-      })
-      );
+          transition: "opacity .3s ease",
+        },
+      });
     }
   };
 
@@ -80,7 +79,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         {text}
       </h3>
       <div className="flex items-center justify-between px-4 pt-0 pb-4 m-0">
-        <span className="text-xl font-bold text-gray-700">${price}</span>
+        <span className="text-xl font-bold text-gray-700">${price.toFixed(2)}</span>
         <div className="flex space-x-3">
           <FaHeart className="text-gray-600 hover:text-red-500 cursor-pointer" />
           <FaShoppingCart

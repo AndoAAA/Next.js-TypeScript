@@ -91,7 +91,6 @@ export default function ProductsPage() {
 
   const products: Product[] = data.products;
 
-  // Filtered products with useMemo for performance
   const filteredProducts = useMemo(() => {
     return products.filter((product) => {
       if (
@@ -143,7 +142,7 @@ export default function ProductsPage() {
     });
   }, [products, selectedFilters]);
 
-  // Sorted products with useMemo
+  // Sorted products
   const sortedProducts = useMemo(() => {
     const sorted = [...filteredProducts];
     if (sortBy === "price-low") {
@@ -326,7 +325,7 @@ export default function ProductsPage() {
                 id={product.id}
                 image={product.image}
                 text={product.text}
-                price={`$${product.price}`}
+                price={product.price}
                 category={product.category}
                 inStock={product.inStock}
               />

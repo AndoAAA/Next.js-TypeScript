@@ -1,5 +1,6 @@
 "use client";
 
+import { useAppSelector } from "@/lib/hooks";
 import Link from "next/link";
 import React, { useState } from "react";
 import {
@@ -13,6 +14,12 @@ import {
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
+
+  const cartItems = useAppSelector(state => state.cart.items);
+  const cartItemCount = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
 
   return (
     <nav className="sticky top-0 z-50 bg-slate-50 px-6 py-4 flex items-center justify-between ">
@@ -47,8 +54,13 @@ const Navbar = () => {
           <Link href="/wishlist">
             <FaHeart className="hover:text-[#a01f64] cursor-pointer" />
           </Link>
-          <Link href="/cart">
+          <Link href="/cart" className="relative">
             <FaShoppingCart className="hover:text-[#a01f64] cursor-pointer" />
+            {cartItemCount > 0 && (
+              <span className="absolute -top-3 -right-4 text-xs text-white bg-[#a01f64] rounded-full px-1.5 py-0.5 ">
+                {cartItemCount}
+              </span>
+            )}
           </Link>
         </div>
         {/* Burger Menu */}

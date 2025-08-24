@@ -58,11 +58,11 @@ const Navbar = () => {
       </div>
       {/* Center section: Nav links */}
       <ul className="hidden md:flex gap-8 text-gray-700 font-medium">
-        {links.map((link) => {
+        {links.map((link, index) => {
           const isActive = pathName === link.href;
           return (
             <li
-              key={link.href}
+              key={index}
               className={
                 isActive ? "text-[#a91f64] font-bold" : "text-gray-900"
               }
@@ -113,11 +113,11 @@ const Navbar = () => {
       {/* Mobile Menu */}
       {isOpen && (
         <ul className="absolute top-full left-0 w-full bg-white flex flex-col items-center gap-4 py-4 text-gray-700 font-medium md:hidden shadow-md">
-          {links.map((link) => {
+          {links.map((link, index) => {
             const isActive = pathName === link.href;
             return (
               <li
-                key={link.href}
+                key={index}
                 className={
                   isActive ? "text-[#a91f64] font-bold" : "text-gray-900"
                 }

@@ -2,6 +2,7 @@
 
 import { useAppSelector } from "@/lib/hooks";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 import {
   FaBars,
@@ -14,12 +15,35 @@ import {
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
+  const pathName = usePathname();
 
-  const cartItems = useAppSelector(state => state.cart.items);
+  const links = [
+    {
+      name: "Home",
+      href: "/",
+    },
+    {
+      name: "New Arrivals",
+      href: "/newarrivals",
+    },
+    {
+      name: "Top Sellers",
+      href: "/topsellers",
+    },
+    {
+      name: "Products",
+      href: "/products",
+    },
+  ];
+
+  const cartItems = useAppSelector((state) => state.cart.items);
   const cartItemCount = cartItems.reduce(
     (total, item) => total + item.quantity,
     0
   );
+
+  const wishListItems = useAppSelector((state) => state.wishList.items);
+  const wishListItemcount = wishListItems.length;
 
   return (
     <nav className="sticky top-0 z-50 bg-slate-50 px-6 py-4 flex items-center justify-between ">
@@ -34,25 +58,37 @@ const Navbar = () => {
       </div>
       {/* Center section: Nav links */}
       <ul className="hidden md:flex gap-8 text-gray-700 font-medium">
-        <li>
-          <Link href="/" className="hover:text-[#a01f64]">
-            Home
-          </Link>
-        </li>
-        <li className="hover:text-[#a01f64] cursor-pointer">New Arrivals</li>
-        <li className="hover:text-[#a01f64] cursor-pointer">Top Sellers</li>
-        <li>
-          <Link href="/products" className="hover:text-[#a01f64]">
-            Products
-          </Link>
-        </li>
+        {links.map((link) => {
+          const isActive = pathName === link.href;
+          return (
+            <li
+              key={link.href}
+              className={
+                isActive ? "text-[#a91f64] font-bold" : "text-gray-900"
+              }
+            >
+              <Link
+                href={link.href}
+                className="hover:text-[#a91f64] transition"
+              >
+                {link.name}
+              </Link>
+            </li>
+          );
+        })}
       </ul>
+
       {/* Right section: icons */}
       <div className="flex items-center gap-6 text-gray-700 text-xl ">
         <div className="flex gap-6">
           <FaTruck className="hover:text-[#a01f64] cursor-pointer" />
-          <Link href="/wishlist">
+          <Link href="/wishlist" className="relative">
             <FaHeart className="hover:text-[#a01f64] cursor-pointer" />
+            {wishListItemcount > 0 && (
+              <span className="absolute -top-3 -right-4 text-xs text-white bg-[#a01f64] rounded-full px-1.5 py-0.5 ">
+                {wishListItemcount}
+              </span>
+            )}
           </Link>
           <Link href="/cart" className="relative">
             <FaShoppingCart className="hover:text-[#a01f64] cursor-pointer" />
@@ -77,36 +113,25 @@ const Navbar = () => {
       {/* Mobile Menu */}
       {isOpen && (
         <ul className="absolute top-full left-0 w-full bg-white flex flex-col items-center gap-4 py-4 text-gray-700 font-medium md:hidden shadow-md">
-          <li>
-            <Link
-              href="/"
-              className="hover:text-[#a01f64] "
-              onClick={toggleMenu}
-            >
-              Home
-            </Link>
-          </li>
-          <li
-            className="hover:text-[#a01f64] cursor-pointer"
-            onClick={toggleMenu}
-          >
-            New Arrivals
-          </li>
-          <li
-            className="hover:text-[#a01f64] cursor-pointer"
-            onClick={toggleMenu}
-          >
-            Top Sellers
-          </li>
-          <li>
-            <Link
-              href="/products"
-              className="hover:text-[#a01f64]"
-              onClick={toggleMenu}
-            >
-              Products
-            </Link>
-          </li>
+          {links.map((link) => {
+            const isActive = pathName === link.href;
+            return (
+              <li
+                key={link.href}
+                className={
+                  isActive ? "text-[#a91f64] font-bold" : "text-gray-900"
+                }
+              >
+                <Link
+                  href={link.href}
+                  className="hover:text-[#a91f64] transition"
+                  onClick={toggleMenu}
+                >
+                  {link.name}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       )}
     </nav>

@@ -11,9 +11,10 @@ import "swiper/css/pagination";
 import ProductCard from "./ProductCard";
 
 interface Card {
+  id: number;
   image: string;
   text: string;
-  price: string;
+  price: number;
 }
 
 interface CardCarouselProps {
@@ -52,6 +53,7 @@ const CardCarousel: React.FC<CardCarouselProps> = ({ title, cards }) => {
           {cards.map((card, index) => (
             <SwiperSlide key={index} className="mb-10">
               <ProductCard
+                id={card.id}
                 image={card.image}
                 text={card.text}
                 price={card.price}

@@ -4,9 +4,10 @@ import CardCarousel from "./CardCarousel";
 
 const NewArrivals = () => {
   const cards = products.slice(0, 8).map((item) => ({
+    id: item.id,
     image: item.image,
     text: item.text,
-    price: `$${item.price}`,
+    price: Number(item.price),
   }));
   return (
     <div>

@@ -186,7 +186,9 @@ export default function ProductsPage() {
           <h4 className="text-base font-medium text-gray-700 mb-2">{title}</h4>
           <div className="space-y-1">
             {options.map((opt) => {
-              const inputId = `${key}-${opt.replace(/\s+/g, "-").toLowerCase()}`;
+              const inputId = `${key}-${opt
+                .replace(/\s+/g, "-")
+                .toLowerCase()}`;
               return (
                 <label
                   key={opt}
@@ -210,7 +212,7 @@ export default function ProductsPage() {
 
       <button
         onClick={clearAllFilters}
-        className="mt-4 bg-red-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-600 transition"
+        className="mt-4 bg-red-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-600 transition cursor-pointer"
         aria-label="Clear all filters"
       >
         Clear All Filters

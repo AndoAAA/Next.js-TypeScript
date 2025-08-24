@@ -49,9 +49,11 @@ const Navbar = () => {
     <nav className="sticky top-0 z-50 bg-slate-50 px-6 py-4 flex items-center justify-between ">
       {/* Left section: Logo */}
       <div className="flex flex-col leading-tight">
-        <span className="text-lg md:text-2xl font-bold text-[#a91f64]">
-          Tarverdyan Projects
-        </span>
+        <Link href="/">
+          <span className="text-lg md:text-2xl font-bold text-[#a91f64] cursor-pointer">
+            Tarverdyan Projects
+          </span>
+        </Link>
         <span className="text-sm text-gray-500 tracking-widest self-center">
           Furniture store
         </span>

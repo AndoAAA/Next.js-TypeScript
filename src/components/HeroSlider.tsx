@@ -67,7 +67,9 @@ const HeroSlider: React.FC<HeroSliderProps> = ({ movies }) => {
 
   // Get Movie Genre
   const getGenres = (media: Movie): string =>
-    media.genres?.length ? media.genres.map((g) => g.name).join(", ") : "Unknown";
+    media.genres?.length
+      ? media.genres.map((g) => g.name).join(", ")
+      : "Unknown";
 
   // Get Movie Runtime
   const formatDuration = (media: Movie): string => {
@@ -88,6 +90,7 @@ const HeroSlider: React.FC<HeroSliderProps> = ({ movies }) => {
   };
 
   // Fetch trailer videos when a media is selected
+
   const { data: trailerData, error } = useSWR<VideosResponse>(
     selectedMedia
       ? `https://api.themoviedb.org/3/${selectedMedia.media_type}/${selectedMedia.id}/videos?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}&language=en-US`
@@ -96,6 +99,7 @@ const HeroSlider: React.FC<HeroSliderProps> = ({ movies }) => {
   );
 
   // Find the first YouTube trailer
+
   const trailer = trailerData?.results?.find(
     (video) => video.site === "YouTube" && video.type === "Trailer"
   );
@@ -105,6 +109,7 @@ const HeroSlider: React.FC<HeroSliderProps> = ({ movies }) => {
     : null;
 
   // Open/Close modal
+
   const openModal = (media: Movie) => {
     setSelectedMedia(media);
     setIsModalOpen(true);
